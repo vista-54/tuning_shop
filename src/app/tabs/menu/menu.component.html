@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title text-center>Профиль</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content id="menu">
+  <div class="user-modal">
+    <div class="user-modal-avatar">
+      <img style="border-radius: 50px" [src]="user?.avatar? user?.avatar : 'assets/img/default-avatar.png'"
+        onError="this.src='assets/img/broken.png';"> </div>
+    <div class="user-modal-info">
+      <p style="display: flex; ">{{user.name}} <br> {{user.surname}}
+        <span class="block-status">
+          <ion-icon *ngIf="user.certified" style="margin-right: 0px;" src="assets/icon/sertificated_person.svg">
+          </ion-icon>
+          <ion-icon *ngIf="user.verified" src="assets/icon/checked_person.svg"></ion-icon>
+        </span>
+      </p>
+      <p>{{user.email}}</p>
+    </div>
+  </div>
+
+  <ion-list lines="none">
+    <ion-item-divider color="medium">
+      Основная
+    </ion-item-divider>
+    <ion-item detail [routerDirection]="'root'" [routerLink]="['../profile']">
+      <img src="assets/img/user.png" alt="" item-start> Профиль
+    </ion-item>
+    <ion-item detail [routerDirection]="'root'" [routerLink]="['../collegues']">
+      <img src="assets/img/user_groups.png" item-srart alt="">
+      Коллеги
+    </ion-item>
+    <ion-item-divider color="medium">
+      Тюнинг Союз
+    </ion-item-divider>
+    <ion-item (click)="openCart()" detail>
+      <img src="assets/img/cart.png" item-srart alt="">
+      <ion-badge slot="end" style="padding: 4px;" color="danger" appCartCount #sumSelectCount="sumSelectCount"
+        [ngStyle]="{'display': sumSelectCount.sumSelectCount ? 'block' : 'none'}">
+        {{sumSelectCount.sumSelectCount ? sumSelectCount.sumSelectCount: ''}}</ion-badge>
+      Корзина
+    </ion-item>
+    <ion-item detail [routerDirection]="'root'" [routerLink]=" ['../category']"> <img src="assets/img/business.png"
+        item-srart alt="">
+      Магазин
+    </ion-item>
+    <ion-item detail [routerDirection]="'root'" [routerLink]="['../menu']" (click)="openCanal()">
+      <img src="assets/img/tv_show.png" item-srart alt="">
+      Видеоканал
+    </ion-item>
+    <ion-item detail [routerDirection]="'root'" [routerLink]="['../support']">
+      <img src="assets/img/handshake.png" item-srart alt="">
+      Тех. поддержка
+    </ion-item>
+    <ion-item detail [routerDirection]="'root'" [routerLink]="['../invite']">
+      <img src="assets/img/_ionicons_svg_md-share-alt.svg" item-srart alt="">
+      Пригласить
+    </ion-item>
+    <ion-item detail [routerDirection]="'root'" [routerLink]="['../about']">
+      <img src="assets/img/info.png" item-srart alt="">
+      О нас
+    </ion-item>
+    <ion-item detail (click)="exit()">
+      <img src="assets/img/opened-exit-door.png" item-srart alt="">
+      Выход
+    </ion-item>
+  </ion-list>
+</ion-content>

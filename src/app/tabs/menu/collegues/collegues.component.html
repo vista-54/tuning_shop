@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/menu">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Коллеги</ion-title>
+
+    <ion-buttons slot="end" (click)="filter()">
+      <ion-icon name="options"></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-toolbar>
+
+    <!-- <ion-segment (change)="segmentChanged($event)">
+      <ion-segment-button value="all" checked>
+        Все
+      </ion-segment-button>
+      <ion-segment-button value="my">
+        Мои контакты
+      </ion-segment-button>
+      <ion-segment-button value="last">
+        Последние
+      </ion-segment-button>
+    </ion-segment> -->
+    <div class="collegues-segments">
+      <ion-button [ngClass]="{'active': selectPage === 'all'}" (click)="segmentChanged('all')">
+        <ion-label>Все</ion-label>
+      </ion-button>
+      <ion-button [ngClass]="{'active': selectPage === 'my'}" (click)="segmentChanged('my')">
+        <ion-label>Мои контакты</ion-label>
+      </ion-button>
+      <ion-button [ngClass]="{'active': selectPage === 'last'}" (click)="segmentChanged('last')">
+        <ion-label>Последние</ion-label>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated [(ngModel)]="name" placeholder="Поиск" (ionChange)="changeSearch($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-list>
+    <app-collegue-item *ngFor="let collegue of list" [collegue]="collegue" [loading]="loading"></app-collegue-item>
+  </ion-list>
+
+  <div class="uncontent" *ngIf="!list.length">
+    <p *ngIf="!loading">У вас нет коллег</p>
+    <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<app-move-top [style.display]="display" (click)="content.scrollToTop()"></app-move-top>

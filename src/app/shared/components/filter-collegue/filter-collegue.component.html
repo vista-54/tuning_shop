@@ -1,0 +1,118 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" (click)="modalController.dismiss()">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Профиль</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="filter" (ngSubmit)="filteFrom()">
+    <ion-list>
+      <ion-radio-group (ionChange)="selectRole($event)" formControlName="role_id">
+        <ion-list-header color="light">
+          Роль
+        </ion-list-header>
+        <ion-item>
+          <ion-label>Мастер</ion-label>
+          <ion-radio value="3"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Компания</ion-label>
+          <ion-radio value="4"></ion-radio>
+        </ion-item>
+        <ion-item>
+          <ion-label>Поставщик</ion-label>
+          <ion-radio value="2"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-item lines="none">
+        <ion-label for="city">Город:</ion-label>
+        <ion-input name="city" formControlName="city"></ion-input>
+      </ion-item>
+      <div *ngIf="checkedMaster">
+
+        <ion-list-header color="light">Специализации</ion-list-header>
+        <ion-item>
+          <ion-label for="specialization">Специализации</ion-label>
+          <ion-select multiple="true" formControlName="specialization">
+            <ion-select-option *ngFor="let spec of specializations" [value]="spec.id">{{spec.name}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </div>
+      <!-- </ion-radio-group> -->
+
+      <ion-radio-group (ionChange)="selectSort($event)" formControlName="sort">
+        <ion-list-header color="light">
+          Рейтинг
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>От большего к меньшему</ion-label>
+          <ion-radio value="acs"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>От меньшего к большему</ion-label>
+          <ion-radio value="desc"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-radio-group (ionChange)="selectCertificate($event)" formControlName="certified">
+
+        <ion-list-header color="light">
+          Сертифицирован
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Да</ion-label>
+          <ion-radio [value]="1"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Нет</ion-label>
+          <ion-radio [value]="0"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Все</ion-label>
+          <ion-radio value="all"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <ion-radio-group (ionChange)="selectVerifired($event)" formControlName="verified">
+
+        <ion-list-header color="light">
+          Проверен
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>Да</ion-label>
+          <ion-radio [value]="1"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Нет</ion-label>
+          <ion-radio [value]="0"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Все</ion-label>
+          <ion-radio value="all"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <button (click)="clear()" class="form_button_center">Сбросить</button>
+
+    <button class="form_button_center" type="submit">Найти</button>
+  </form>
+</ion-content>

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar style=" padding-top: 0 ">
+    <ion-title text-center>
+      Переслать
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="!loading" class="users-content">
+    <div class="share-users" *ngFor="let user of list">
+      <ion-avatar (click)="selectShare(user['id'])" [ngClass]="{'select-people': getSelect(user['id'])}">
+        <img [src]="user['avatar']" onError="this.src='assets/img/broken.png';">
+      </ion-avatar>
+      <p>{{user['name']}} {{user['surname']}}</p>
+    </div>
+  </div>
+
+  <div class="uncontent" *ngIf="!list.length">
+    <p *ngIf="!loading">У вас нет коллег</p>
+    <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
+  </div>
+
+  <ion-button [ngClass]="{'show': users.length}" class="button-share" color="primary" expand="block"
+    (click)="sendRecord()">Переслать</ion-button>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event);">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

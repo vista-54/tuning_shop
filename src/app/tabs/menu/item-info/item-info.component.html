@@ -1,0 +1,74 @@
+<ion-header>
+
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" (click)="back()">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title text-center>{{entity['name']}}</ion-title>
+
+    <ion-buttons style="position: relative;" slot="end" (click)="openCart()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge style="padding: 4px;" color="danger" appCartCount #sumSelectCount="sumSelectCount"
+        [ngStyle]="{'display': sumSelectCount.sumSelectCount ? 'block' : 'none'}">
+        {{sumSelectCount.sumSelectCount ? sumSelectCount.sumSelectCount: ''}}</ion-badge>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <span style="position: absolute; top: 10px; left: 15px; z-index: 999; right: auto; font-size: 45px;"
+    class="block-status">
+    <ion-icon *ngIf="entity.action" style="margin-right: 7px;" src="assets/icon/icon_akcia.svg"></ion-icon>
+    <ion-icon *ngIf="entity.new" src="assets/icon/icon_novinka.svg"></ion-icon>
+    <ion-icon *ngIf="!entity.count" src="assets/icon/icon_tovara_net.svg"></ion-icon>
+  </span>
+
+  <ion-slides style="position: relative;" class="info_image_sliders" pager="false" [options]="slideOpts">
+
+    <ion-slide>
+      <div class="vinil_slider_image">
+        <img [src]="entity.image_link" onError="this.src='assets/img/broken.png';">
+      </div>
+    </ion-slide>
+
+  </ion-slides>
+
+  <div class="vinil_block_price" style="margin-top: 15px;">
+    <p>{{entity['price']}} р.</p>
+    <button (click)="toggle(true)">
+      <p>{{countSelect ? 'Удалить' : 'В корзину'  }}</p>
+      <img style="width: 20px; margin-top: 3px; margin-left: 5px;" src="assets/img/icons8_Shopping_Bag_100px.png"
+        alt="">
+    </button>
+  </div>
+
+  <div style="margin-top: 15px;" class="change_count" *ngIf="countSelect">
+    <button [disabled]="!countSelect" (click)="rm()">-</button>
+    <input min="1" #count type="number" (change)="changeCount($event)" [(ngModel)]="countSelect">
+    <button (click)="add()">+</button>
+  </div>
+
+  <div class="vinil_block_description_color">
+    <div class="info" style="margin-top: 10px;">
+      <p *ngIf="entity['description']">{{entity['description']}}</p>
+    </div>
+    <div class="info" *ngFor="let item of entity['attributes']">
+      <h3>{{item.attribute_name}} :</h3>
+      <p>{{item.value}}</p>
+    </div>
+    <div class="share">
+      <button style="margin-top: 10px; width: 80%;" (click)="openDialog(entity['user_provider_id'])">Связатся с
+        продавцом</button>
+      <ion-icon name="share" (click)="sharePopup()"></ion-icon>
+    </div>
+  </div>
+
+  <button style="position: relative;" class="form_button_center" (click)="openComments(entity['id'])">Отзывы
+    &nbsp;{{entity['comment_count'] ? '(' + entity['comment_count'] + ')' : ' '}}
+  </button>
+</ion-content>

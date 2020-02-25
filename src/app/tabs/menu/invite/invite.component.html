@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/menu">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Пригласить</ion-title>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="invite" (ngSubmit)="inviteForm()">
+    <input type="email" name="email" formControlName="email" placeholder="Почта" required>
+    <div *ngIf="invite.controls.email.errors  && (invite.controls.email.dirty || invite.controls.email.touched)">
+      <div *ngIf="invite.controls.email.errors?.required" class="valid_form_error">
+        Почта обязательное поле
+      </div>
+      <div *ngIf="invite.controls.email.errors?.email" class="valid_form_error">
+        Почта указана не верно
+      </div>
+    </div>
+    <button type="submit" [disabled]="!invite.valid" class="form_button_center">
+      Отправить
+    </button>
+  </form>
+
+</ion-content>

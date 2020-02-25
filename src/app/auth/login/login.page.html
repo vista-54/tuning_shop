@@ -1,0 +1,31 @@
+<ion-content id="login">
+    <!-- <h1>logo</h1> -->
+    <div class="logo">
+        <img src="assets/img/logo_reg.png" alt="">
+    </div>
+    <form [formGroup]="log" (ngSubmit)="logForm()">
+        <ion-item>
+            <ion-input type="email" formControlName="email" placeholder="Почта"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="password" formControlName="password" placeholder="Пароль"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Запомнить меня</ion-label>
+            <ion-checkbox style="margin-right: 15px;" slot="start" formControlName="login" color="primary"
+                (ionChange)="autologin($event)"></ion-checkbox>
+        </ion-item>
+        <div class="form_button">
+            <button [disabled]="!log.valid" class="form_button_outline" type="submit">Войти</button>
+            <button class="form_button_line" type="button" (click)="openRegister()">Регистрация</button>
+        </div>
+        <div class="form_footer">
+            <p>Забыли пароль?
+                <!-- <span (click)="openRegister()">Регистрация</span> -->
+            </p>
+            <p>
+                <span (click)="forgot()">Востановить пароль</span>
+            </p>
+        </div>
+    </form>
+</ion-content>

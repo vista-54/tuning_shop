@@ -1,0 +1,68 @@
+<div id="newCard" *ngIf="!loading && new !== null" [ngClass]="cssClass"
+  [ngStyle]="{'background': getStyle('background'), 'margin': getStyle('margin')}">
+  <div class="user_info_subject">
+    <div (click)="openUser(new['user_id'])" class="user_info_subject_avatar">
+      <img [src]="new['avatar'] ? new['avatar'] : 'assets/img/default-avatar.png'"
+        onError="this.src='assets/img/broken.png';">
+    </div>
+    <div class="user_info_subject_name">
+      <p>{{new.username}}</p>
+      <p [ngStyle]="{'color': getStyle('color')}">{{new.role_name}}</p>
+    </div>
+    <p [ngStyle]="{'color': getStyle('color')}" class="timeAgo">
+      {{new.created_at | amLocale:'ru' | amTimeAgo}}</p>
+    <ion-icon class="close" name="more" (click)="selectPopup()"></ion-icon>
+  </div>
+  <ion-slides *ngIf="new?.photos?.length" [pager]="new?.photos?.length !== 1" [options]="slideOpts">
+    <ion-slide *ngFor="let image of new.photos; let index = index;">
+      <div>
+        <img [src]="image.link" onError="this.src='assets/img/broken.png';" alt="">
+      </div>
+    </ion-slide>
+  </ion-slides>
+  <div class="user_text" [ngStyle]="{'color': getStyle('color')}">
+    {{new.description}}
+  </div>
+  <div class="user_comments">
+    <p (click)="openComments(new['id'], new['user_id'])">
+      <ion-icon name="chatbubbles"></ion-icon>&nbsp;
+      Комментарии &nbsp;{{new['comment_count'] ? '(' + new['comment_count'] + ')' : ' '}}
+    </p>
+    <div>
+      <ion-icon *ngIf="new['instagram']" name="logo-instagram" (click)="openInst(new['instagram'])">
+      </ion-icon>
+      <ion-icon *ngIf="new['vk']" style="margin-left: 10px;" name="logo-vk" (click)="openVK(new['vk'])">
+      </ion-icon>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading">
+  <div class="user_info_subject">
+    <ion-thumbnail slot="start" class="user_info_subject_avatar">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-thumbnail>
+    <div class="user_info_subject_name" style="width: 50%;">
+      <ion-skeleton-text animated style="width: 30%; margin: 10px 0;"></ion-skeleton-text>
+      <ion-skeleton-text animated style="width: 60%; margin: 10px 0;"></ion-skeleton-text>
+    </div>
+    <ion-skeleton-text class="timeAgo" animated style="width: 20%"></ion-skeleton-text>
+  </div>
+  <ion-skeleton-text animated style="width: 100%; height: 150px;"></ion-skeleton-text>
+  <div class="user_text">
+    <ion-skeleton-text animated style="width: 70%; margin: 10px 0;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 50%; margin: 10px 0;"></ion-skeleton-text>
+    <ion-skeleton-text animated style="width: 80%; margin: 10px 0;"></ion-skeleton-text>
+  </div>
+  <div class="user_comments">
+    <p style="width: 75%;">
+      <ion-icon name="chatbubbles"></ion-icon>
+      <ion-skeleton-text animated style="width: 60%; margin: 10px;"></ion-skeleton-text>
+    </p>
+    <div>
+      <ion-icon name="logo-instagram">
+      </ion-icon>
+      <ion-icon style="margin-left: 10px;" name="logo-vk">
+      </ion-icon>
+    </div>
+  </div>
+</div>

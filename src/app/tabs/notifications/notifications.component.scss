@@ -1,0 +1,64 @@
+@import "../../../theme/variables";
+
+// ion-virtual-scroll {
+// padding-bottom: 20px;
+// box-sizing: content-box;
+.card {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 2px 7px 0px rgba(167, 168, 169, 0.3);
+    width: 90%;
+    margin: 5%;
+
+   
+
+    .user_text {
+        font: {
+            weight: 400;
+            size: 14px;
+            family: $app-fonts;
+        }
+
+        color: #6c6c6c;
+    }
+
+    .user_comments {
+        display: flex;
+        height: 40px;
+        justify-content: space-between;
+        flex-direction: row;
+        align-items: center;
+
+        font: {
+            weight: 400;
+            size: 14px;
+            family: $app-fonts;
+        }
+
+        color: #6c6c6c;
+
+        p {
+            margin: 0 5px 0 0;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+// }
+
+.uncontent {
+    text-align: center;
+    padding: 20px;
+
+    p {
+        font: {
+            size: 14px;
+            weigth: 600;
+            family: $app-fonts;
+        }
+
+        color: #000;
+    }
+}

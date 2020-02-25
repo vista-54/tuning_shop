@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/menu">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{getTitle()}}</ion-title>
+
+    <ion-buttons slot="end" (click)="search = !search">
+      <ion-icon name="search"></ion-icon>
+      <!-- <img src="assets/img/icons8_Search_100px.png" alt=""> -->
+    </ion-buttons>
+
+    <ion-buttons slot="end" (click)="openFilter()">
+      <ion-icon name="options"></ion-icon>
+
+      <!-- <img src="assets/img/icons8_Filter_100px.png" alt=""> -->
+    </ion-buttons>
+
+    <ion-buttons slot="end" (click)="openCart()">
+      <ion-icon name="cart"></ion-icon>
+      <ion-badge style="padding: 4px;" color="danger" appCartCount #sumSelectCount="sumSelectCount"
+        [ngStyle]="{'display': sumSelectCount.sumSelectCount ? 'block' : 'none'}">
+        {{sumSelectCount.sumSelectCount ? sumSelectCount.sumSelectCount: ''}}</ion-badge>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <div class="sliders-block">
+      <!-- <ion-icon mode="ios" name="arrow-back" (click)="sliders.slidePrev()"></ion-icon> -->
+      <ion-slides #sliders [pager]="false" [options]="slideOpts">
+        <ion-slide *ngFor="let category of categories" (click)="changeCategory(category['id'])">
+          <p [ngStyle]="{'color': category['id'] == id ? '#ffd269' : '#fff'}" class="slider-text"> {{category['title']}}
+          </p>
+        </ion-slide>
+      </ion-slides>
+      <!-- <ion-icon mode="ios" name="arrow-forward" (click)="sliders.slideNext()">
+      </ion-icon> -->
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar *ngIf="search">
+    <ion-searchbar animated [(ngModel)]="name" debounce="500" placeholder="Поиск" (ionChange)="changeSearch($event)">
+    </ion-searchbar>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/menu">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Профиль</ion-title>
+
+    <ion-buttons *ngIf="!checked" (click)="checked = !checked" slot="end">
+      <img src="assets/img/icons_edit.png" alt=""></ion-buttons>
+
+    <ion-buttons *ngIf="checked" (click)="checked = !checked; update()" slot="end">
+      <img src="assets/img/icons_checkmark.png" alt="">
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <div style="position: relative;" class="user_block_header">
+    <div class="user_avatar">
+      <img [src]="user.avatar ? user.avatar : 'assets/img/default-avatar.png'" alt="image1">
+    </div>
+    <img (click)="presentActionSheet()" *ngIf="checked" class="user_image_edit" src="assets/img/edit_avatar.png" alt="">
+    <h2 [ngStyle]="{'color': !checked ? '#303030' : '#fff' }">{{user.name}} {{user.surname}}</h2>
+    <span style=" position: static;" class="block-status">
+      <ion-icon *ngIf="user.certified" style="margin-right: 0px;" src="assets/icon/sertificated_person.svg">
+      </ion-icon>
+      <ion-icon *ngIf="user.verified" src="assets/icon/checked_person.svg"></ion-icon>
+    </span>
+  </div>
+
+  <form [formGroup]="profile" (ngSubmit)="updateUser()">
+    <ion-item>
+      <ion-label floating>Имя:</ion-label>
+      <ion-input name="name" [disabled]="!checked" type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Фамилия:</ion-label>
+      <ion-input name="surname" [disabled]="!checked" type="text" formControlName="surname"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Город:</ion-label>
+      <ion-input name="city" [disabled]="!checked" type="text" formControlName="city"></ion-input>
+    </ion-item>
+    <div *ngIf="user.role_id == 3 && checked">
+      <ion-item>
+        <ion-label for="specialization">Специализации:</ion-label>
+        <ion-select name="specialization" placeholder="Специализации" multiple="true" formControlName="specialization">
+          <ion-select-option *ngFor="let spec of specializations" [value]="spec.id">{{spec.name}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+    <ion-item>
+      <ion-label floating>Адрес:</ion-label>
+      <ion-input name="address" [disabled]="!checked" type="text" formControlName="address"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="flex: inherit;">Пол:</ion-label>
+      <ion-select style="padding: 0;" name="sex" [disabled]="!checked" formControlName="sex" value="profile.value.sex"
+        okText="Принять" cancelText="Отмена">
+        <ion-select-option value="1">Женщина</ion-select-option>
+        <ion-select-option value="2">Мужчина</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label floating style="flex: inherit;">Дата рождения:</ion-label>
+      <ion-datetime okText="Принять" cancelText="Отмена" style="padding: 0;" name="birthday" [disabled]="!checked"
+        displayFormat="DD.MM.YY" pickerFormat="DD MM YY" formControlName="birthday"></ion-datetime>
+    </ion-item>
+    <ion-item *ngIf="checked">
+      <ion-label floating>Адрес почты:</ion-label>
+      <ion-input name="email" type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="checked">
+      <ion-label floating>Телефон:</ion-label>
+      <ion-input name="phone" type="text" formControlName="phone"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="checked">
+      <ion-label floating>Instagram:</ion-label>
+      <ion-input name="instagrame" type="text" placeholder="nickname" formControlName="instagram"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="checked">
+      <ion-label floating>VK:</ion-label>
+      <ion-input name="vk" type="text" placeholder="https://vk.com/127016378" formControlName="vk"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="checked && profile.value.role_id == 3">
+      <ion-label floating>О себе:</ion-label>
+      <ion-input name="about" type="text" formControlName="about"></ion-input>
+    </ion-item>
+
+    <ion-button style="margin-top: 15px;" (click)="openNewPasswordPopup()" expand="block" fill="outline">Поменять пароль
+    </ion-button>
+  </form>
+
+</ion-content>

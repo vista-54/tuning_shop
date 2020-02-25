@@ -1,0 +1,62 @@
+<ion-header>
+    <ion-toolbar style="--background: #5b87e5 !important; --border-width: 0 0 0 0 !important">
+
+        <ion-buttons slot="start">
+            <ion-back-button text="Войти" defaultHref="app/auth">
+            </ion-back-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content id="register">
+    <form [formGroup]="reg" (ngSubmit)="regForm()">
+        <ion-item>
+            <ion-input type="text" formControlName="name" placeholder="Имя*"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" formControlName="surname" placeholder="Фамилия*"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="email" formControlName="email" placeholder="Почта*"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="password" formControlName="password" placeholder="Пароль*"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="password" formControlName="passwordConfirm" placeholder="Подтвердите пароль*"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="tel" formControlName="invite_code" placeholder="Код приглашения"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-select [interfaceOptions]="customAlertOptions" cancelText="Отмена" okText="Принять"
+                formControlName="role_id" placeholder="Роль*">
+                <ion-select-option *ngFor="let role of roles" value="{{role.id}}">{{role.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item *ngIf="reg.value.role_id == 3">
+            <ion-textarea type="text" placeholder="О себе" formControlName="about"></ion-textarea>
+        </ion-item>
+        <div *ngIf="reg.value.role_id == 3">
+            <ion-item>
+                <ion-label for="specialization">Специализации</ion-label>
+                <ion-select placeholder="Специализации" multiple="true" formControlName="specialization">
+                    <ion-select-option *ngFor="let spec of specializations" [value]="spec.id">{{spec.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+        </div>
+        <div class="form_button">
+            <button [disabled]="!reg.valid" class="form_button_center" type="submit">Регистрация</button>
+        </div>
+        <div class="form_footer">
+            <p>Есть аккаунт?
+                <span (click)="openRegister()">Регистрация</span>
+            </p>
+            <p>Вспомнили пароль?
+                <span (click)="back()">Войти</span>
+            </p>
+        </div>
+    </form>
+</ion-content>

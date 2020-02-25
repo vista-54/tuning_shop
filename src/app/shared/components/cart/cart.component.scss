@@ -1,0 +1,247 @@
+@import "../../../../theme/variables.scss";
+
+ion-content {
+    .content {
+        .custom_sub_header {
+            padding: 0 15px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: row;
+
+            background: {
+                color: #f1f1f1;
+            }
+
+            color: #000;
+
+            font: {
+                size: 16px;
+                weight: bold;
+                family: $app-fonts;
+            }
+        }
+
+        .list-items {
+            padding: 20px;
+
+            .item {
+                display: flex;
+                position: relative;
+
+                .title_image {
+                    margin-right: 20px;
+                    height: 120px;
+                    overflow: hidden;
+                    width: 25%;
+                    max-width: 120px;
+                    min-width: 105px;
+
+                    border: {
+                        radius: 5px;
+                    }
+
+                    img {
+                        height: 100%;
+                        object-fit: contain;
+                    }
+                }
+
+                .item-body {
+                    p {
+                        font: {
+                            family: $app-fonts;
+                        }
+
+                        margin: 0;
+
+                        &:first-child {
+                            margin-top: 10px;
+                            color: #000;
+
+                            font: {
+                                size: 16px;
+                                weight: 600;
+                            }
+                        }
+
+                        &:nth-child(2),
+                        &:nth-child(3) {
+                            margin: 5px 0 10px;
+                            color: #979798;
+
+                            font: {
+                                size: 14px;
+                                weight: 400;
+                            }
+                        }
+
+                        &:nth-child(3) {
+                            color: #c3055a;
+
+                            font: {
+                                weight: 600;
+                            }
+                        }
+                    }
+
+                    .change_count {
+                        display: flex;
+                        width: 90px;
+                        justify-content: space-between;
+                        align-items: baseline;
+
+                        button {
+                            background: {
+                                color: #2ac1ec;
+                            }
+
+                            width: 20px;
+                            height: 20px;
+                            border: none;
+                            border-radius: 2px;
+                            color: #fff;
+                        }
+                    }
+                }
+
+                .delete {
+                    position: absolute;
+                    width: 16px;
+                    height: 16px;
+                    left: 95%;
+                    top: calc(50% - 8px);
+                }
+            }
+        }
+
+        .buy_cart {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+
+            border-top: {
+                width: 1px;
+                color: #d4d4d4;
+                style: solid;
+            }
+
+            border-bottom: {
+                width: 1px;
+                color: #d4d4d4;
+                style: solid;
+            }
+
+            p {
+                line-height: 20px;
+
+                font: {
+                    size: 16px;
+                    family: $app-fonts;
+                    weight: 400;
+                }
+
+                &:last-child {
+                    color: #c3055a;
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .buy_button {
+            margin: 30px auto;
+
+            button {
+                display: block;
+                margin: 30px auto 0;
+                width: 90%;
+                height: 35px;
+                color: #fff;
+
+                font: {
+                    size: 14px;
+                    weight: 400;
+                    family: $app-fonts;
+                }
+
+                background: {
+                    color: #4d6ff8;
+                }
+
+                border: none;
+
+                border: {
+                    radius: 40px;
+                }
+            }
+        }
+    }
+
+    .uncontent {
+        text-align: center;
+        padding: 20px;
+
+        p {
+            font: {
+                size: 16px;
+                weigth: 600;
+                family: $app-fonts;
+            }
+
+            color: #000;
+        }
+    }
+}
+
+textarea {
+    margin: 10px 2% 2% 2%;
+    width: 94%;
+    min-height: 38px;
+    resize: unset;
+    overflow: hidden;
+
+    border: {
+        radius: 15px;
+        width: 1px;
+        color: #dedede;
+        style: solid;
+    }
+
+    padding: 5px 0 5px 15px;
+
+    // border-radius: 15px;
+    color: #000;
+
+    &::placeholder {
+        //padding: 5px 0 5px 10px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.buy_button {
+    button {
+        display: block;
+        margin: 30px auto;
+        width: 90%;
+        height: 35px;
+        color: #fff;
+
+        font: {
+            size: 14px;
+            weight: 400;
+            family: $app-fonts;
+        }
+
+        background: {
+            color: #4d6ff8;
+        }
+
+        border: none;
+
+        border: {
+            radius: 40px;
+        }
+    }
+}

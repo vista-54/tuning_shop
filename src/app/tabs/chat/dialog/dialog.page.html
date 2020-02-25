@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-back-button text="" (click)="back()">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-title text-center>{{name}} {{surname}}</ion-title>
+
+        <ion-buttons slot="end">
+            <img style="border-radius: 20px; height: 35px; width: 35px;" [src]="avatar"
+                onError="this.src='assets/img/broken.png'">
+        </ion-buttons>
+
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content #content [scrollEvents]="true" (ionScroll)="changeScroll($event)">
+
+    <div *ngFor="let message of messages | async" [ngSwitch]="message['type']">
+        <!-- <div *ngSwitchCase="'message'" class="messages" [ngClass]="{right: message.message_creator_id == user.id}">
+            <p>{{message.message}}</p>
+            <p>{{message.date | amLocale:'ru' | amTimeAgo}}</p>
+        </div> -->
+        <app-chat-file *ngSwitchCase="'message'" [message]="message" [loading]="false" [user]="user"></app-chat-file>
+        <app-news-item [cssClass]="'chat-news'" *ngSwitchCase="'news'" [new]="message"></app-news-item>
+        <app-notification-item [cssClass]="'chat-notification'" *ngSwitchCase="'notification'" [notification]="message">
+        </app-notification-item>
+        <app-shop-item [cssClass]="'chat-shop'" *ngSwitchCase="'shop'" [shop]="message"></app-shop-item>
+
+    </div>
+    <div *ngFor="let message of messagesWithFils">
+        <app-chat-file [message]="message" [loading]="true" [user]="user"></app-chat-file>
+    </div>
+</ion-content>
+
+<ion-footer>
+
+    <ion-toolbar style="padding-bottom: 0">
+        <ion-buttons slot="start">
+            <ion-button (click)="attach()">
+                <ion-icon style="color: #4d6ff8;" slot="icon-only" name="attach"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+        <ion-textarea style="margin-bottom: 8px;"  placeholder="Ваш текст..." class="texarea" name="message" id="message" rows="1" #textarea
+            [(ngModel)]="message" (ionFocus)="onFocus()" (ionBlur)="onBlur()"></ion-textarea>
+
+        <ion-buttons slot="end">
+            <ion-button (click)="send()">
+                <ion-icon style="color: #4d6ff8;" slot="icon-only" name="send"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+    <ion-toolbar style="padding-bottom: 0" *ngIf="fileUnload.length">
+        <ion-list style="margin-bottom: 0">
+            <ion-item lines="none" *ngFor="let file of fileUnload; let i = index">
+                <ion-icon [name]="file.fileType === 'image/jpeg' || file.type === 'image/png' ? 'image' : 'document'">
+                </ion-icon>
+                <p style="margin-left: 10px;">
+                    {{file.fileName}}
+                </p>
+                <ion-icon style="margin-left: 10px;" name="close" (click)="rmFile(i)"></ion-icon>
+                <ion-spinner *ngIf="file['loading']" style="margin-left: 10px;" name="crescent"></ion-spinner>
+            </ion-item>
+        </ion-list>
+    </ion-toolbar>
+    <ion-progress-bar *ngIf="fileLoad" type="indeterminate" reversed="true"></ion-progress-bar>
+
+    <!-- <ion-searchbar placeholder="Search Favorites"></ion-searchbar> -->
+
+</ion-footer>

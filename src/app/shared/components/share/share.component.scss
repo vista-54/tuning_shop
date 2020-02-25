@@ -1,0 +1,68 @@
+ion-header ion-toolbar:first-child {
+  padding-top: 0 !important;
+}
+
+.users-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .share-users {
+    max-width: 25%;
+    position: relative;
+    padding: 10px;
+
+    ion-avatar {
+      // width: 100%;
+      margin: 0 auto;
+      --border-radius: 100px;
+      transition: 0.5s;
+    }
+
+    ion-checkbox {
+      position: absolute;
+      right: 0; // top: -5px;
+    }
+    p {
+      font-size: 13px;
+      text-align: center;
+    }
+  }
+}
+
+.button-share {
+  position: fixed;
+  bottom: -100px;
+  margin: 10px;
+  width: -webkit-fill-available;
+  transition: 0.5s;
+}
+
+.show {
+  bottom: 10px;
+  margin: 10px;
+}
+
+.select-people {
+  color: #fff;
+
+  border: {
+    style: solid;
+    width: 2px;
+    color: #488aff;
+  }
+
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(#5a99d4, 0.5);
+  animation: pulse 1.5s infinite;
+}
+
+@-webkit-keyframes pulse {
+  70% {
+    box-shadow: 0 0 0 10px rgba(#5a99d4, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(#5a99d4, 0);
+  }
+}

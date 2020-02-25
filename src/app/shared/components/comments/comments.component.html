@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" (click)="modalController.dismiss({totalItems: totalItems})">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>{{com ? 'Комментарии' : 'Отзывы'}}</ion-title>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content style="z-index: 0" #content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card" *ngFor="let comment of list;">
+    <app-comment-item [comment]="comment" [typeUrl]="typeUrl" [loading]="loading" [(totalItems)]="totalItems"
+      (dismiss)="modalController.dismiss({totalItems: totalItems})">
+    </app-comment-item>
+  </div>
+
+  <div class="uncontent" *ngIf="!list.length">
+    <p *ngIf="!loading">На данный момент {{com ? 'комментариев' : 'отзывов'}} нет</p>
+    <ion-spinner *ngIf="!loading && list.length" name="lines"></ion-spinner>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<ion-footer *ngIf="permission">
+  <ion-toolbar>
+    <div *ngIf="userId != user['id'] && !com" class="rating">
+      <owl-rating [(ngModel)]="message.rating">
+        <owl-rating-button value="1">
+          1 Star
+        </owl-rating-button>
+        <owl-rating-button value="2">
+          2 Stars
+        </owl-rating-button>
+        <owl-rating-button value="3">
+          3 Stars
+        </owl-rating-button>
+        <owl-rating-button value="4">
+          4 Stars
+        </owl-rating-button>
+        <owl-rating-button value="5">
+          5 Stars
+        </owl-rating-button>
+      </owl-rating>
+    </div>
+    <div class="enter_text">
+      <textarea reiszeTextarea placeholder="Ваш текст..." class="texarea" placeholder="Ваш текст..." name="message"
+        id="message" rows="1" [(ngModel)]="message.text"></textarea>
+
+      <ion-buttons slot="end">
+        <ion-button (click)="send()">
+          <ion-icon style="color: #4d6ff8;" slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+
+  </ion-toolbar>
+
+  <!-- <ion-searchbar placeholder="Search Favorites"></ion-searchbar> -->
+
+</ion-footer>
+
+<app-move-top [style.display]="display" (click)="content.scrollToTop()"></app-move-top>

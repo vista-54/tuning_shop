@@ -1,0 +1,76 @@
+@import '../../../../theme/variables.scss';
+
+ion-content {
+    ion-item {
+        width: 90%;
+        margin: 0 auto;
+        --padding-start: 0;
+    }
+
+    ion-list-header {
+        padding-left: 10px;
+    }
+
+    .form_button_center {
+        height: 30px;
+        width: 75%;
+        margin: 20px auto;
+        display: block;
+
+        // box-shadow: 0 0 42.48px 16.52px rgba(2, 55, 205, 0.28);
+        background: {
+            color: white;
+        }
+
+        border: {
+            radius: 40px;
+            style: solid;
+            width: 1px;
+            color: $background-color;
+        }
+
+        font: {
+            size: 14px;
+            family: $app-fonts;
+        }
+
+        color: $background-color;
+    }
+
+    .trans {
+        transition: .2s;
+    }
+
+}
+
+// .valid_form_error {
+//     color: red;
+//     position: absolute;
+//     font-size: 12px;
+//     top: 30px;
+//     font-font-family: "Ubuntu", sans-serif;
+//     font-weight: 400;
+// }
+
+.required_form {
+    box-shadow: 0 0px 3px #d41414;
+    z-index: 9;
+    padding: 10px;
+    -webkit-animation: pulse 1.5s infinite;
+}
+
+@-webkit-keyframes pulse {
+    70% {
+        box-shadow: 0 0 0 3px rgba(#d41414, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(#d41414, 0);
+    }
+}
+
+.success_form {
+    box-shadow: 0 0px 3px rgb(14, 211, 14);
+    z-index: 9;
+    padding-left: 5px;
+}

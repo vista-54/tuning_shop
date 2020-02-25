@@ -1,0 +1,53 @@
+@import '../../../../theme/variables.scss';
+
+ion-content {
+  textarea {
+    margin: 10px 2% 30px 2%;
+    width: 94%;
+    min-height: 38px;
+    resize: unset;
+    overflow: hidden;
+
+    border: {
+      radius: 15px;
+      width: 1px;
+      color: #dedede;
+      style: solid;
+    }
+
+    // border-radius: 15px;
+    color: #000;
+
+    &::placeholder {
+      padding: 5px 0 5px 10px;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .form_button_center {
+    height: 45px;
+    width: 75%;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 0 42.48px 16.52px rgba(2, 55, 205, 0.28);
+
+    background: {
+      color: white;
+    }
+
+    border: {
+      radius: 40px;
+      style: none;
+    }
+
+    font: {
+      size: 18px;
+      family: $app-fonts;
+    }
+
+    color: $background-color;
+  }
+}

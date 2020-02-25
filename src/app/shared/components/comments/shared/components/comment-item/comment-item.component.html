@@ -1,0 +1,51 @@
+ <div class="comment_user_block" *ngIf="!loading && comment !== null">
+   <div (click)="openUser(comment['user_id'])" *ngIf="comment.avatar" class="user_avatar">
+     <img [src]="comment['avatar'] ? comment['avatar'] : 'assets/img/default-avatar.png'">
+   </div>
+   <div class="user_info">
+     <p>{{comment.full_name}}</p>
+     <p>{{comment.created_at | amLocale:'ru' | amTimeAgo}}</p>
+     <p>{{comment.text}}</p>
+   </div>
+   <div *ngIf="comment.rating" class="rating" [ngStyle]="{'right': comment['user_id'] == user['id'] ? '30px' : '15px'}">
+     <owl-rating [(ngModel)]=" comment.rating" [readonly]="true">
+       <owl-rating-button value="1">
+         1 Star
+       </owl-rating-button>
+       <owl-rating-button value="2">
+         2 Stars
+       </owl-rating-button>
+       <owl-rating-button value="3">
+         3 Stars
+       </owl-rating-button>
+       <owl-rating-button value="4">
+         4 Stars
+       </owl-rating-button>
+       <owl-rating-button value="5">
+         5 Stars
+       </owl-rating-button>
+     </owl-rating>
+   </div>
+   <ion-icon *ngIf="comment['user_id'] == user['id']" (click)="rmComment(comment['id'])" class="close" name="close">
+   </ion-icon>
+ </div>
+ <div class="comment_user_block" *ngIf="loading">
+   <ion-avatar slot="start" style="margin-right: 15px;">
+     <ion-skeleton-text animated></ion-skeleton-text>
+   </ion-avatar>
+   <div class="user_info">
+     <p>
+       <ion-skeleton-text animated style="width: 40%;"></ion-skeleton-text>
+     </p>
+     <p>
+       <ion-skeleton-text animated style="width: 30%;"></ion-skeleton-text>
+     </p>
+     <p>
+       <ion-skeleton-text animated style="width: 40%;"></ion-skeleton-text>
+       <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
+     </p>
+   </div>
+   <div class="rating">
+     <ion-skeleton-text animated style="width: 20%;"></ion-skeleton-text>
+   </div>
+ </div>

@@ -1,0 +1,50 @@
+@import "../../../../theme/variables.scss";
+
+.security_card_vinil {
+  .image {
+    width: 100%;
+    overflow: hidden;
+    height: 150px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-clip: content-box;
+    img {
+      max-height: 200px;
+    }
+  }
+
+  h3 {
+    color: #7993fc;
+    margin: 0;
+
+    font: {
+      family: $app-fonts;
+      weight: 600;
+      size: 14px;
+    }
+  }
+
+  p {
+    font: {
+      family: $app-fonts;
+      weight: 400;
+      size: 10px;
+    }
+  }
+}
+
+.uncontent {
+  text-align: center;
+  padding: 20px;
+
+  p {
+    font: {
+      size: 14px;
+      weigth: 600;
+      family: $app-fonts;
+    }
+
+    color: #000;
+  }
+}

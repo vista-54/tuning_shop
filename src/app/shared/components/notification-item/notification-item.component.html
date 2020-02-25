@@ -1,0 +1,35 @@
+<div *ngIf="!loading" [ngClass]="cssClass"
+  [ngStyle]="{'background': getStyle('background'), 'margin': getStyle('margin')}">
+  <div class="user_info">
+    <div class="user_info_avatar" (click)="openUser(notification['user_id'])">
+      <img [src]="notification['avatar']? notification['avatar']: 'assets/img/default-avatar.png'" alt="">
+    </div>
+    <div class="user_info_name">
+      <p (click)="openUser(notification['user_id'])" [ngStyle]="{'color': getStyle('color')}">{{notification.full_name}}
+      </p>
+    </div>
+    <p class="timeAgo" [ngStyle]="{'color': getStyle('color')}">{{notification.created_at | amLocale:'ru' | amTimeAgo}}
+    </p>
+    <!-- <ion-icon class="close" name="share" (click)="selectPopup($event)"></ion-icon> -->
+  </div>
+  <div class="text-notification" [id]="'content_div'+ index"></div>
+</div>
+<div *ngIf="loading">
+  <div class="user_info">
+    <ion-thumbnail slot="start">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-thumbnail>
+    <div class="user_info_name">
+      <ion-skeleton-text animated style="margin-left: 10px; width: 160px;"></ion-skeleton-text>
+    </div>
+  </div>
+  <h3>
+    <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+  </h3>
+  <p>
+    <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+  </p>
+  <p>
+    <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+  </p>
+</div>

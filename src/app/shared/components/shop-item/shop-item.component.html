@@ -1,0 +1,30 @@
+<div *ngIf="!loading && shop !== null" [ngClass]="cssClass"
+  [ngStyle]="{'background': getStyle('background'), 'margin': getStyle('margin')}">
+  <span style="position: absolute; top: 10px; left: 15px; z-index: 999; right: auto; font-size: 45px;"
+    class="block-status">
+    <ion-icon *ngIf="shop.action" style="margin-right: 7px;" src="assets/icon/icon_akcia.svg"></ion-icon>
+    <ion-icon *ngIf="shop.new" src="assets/icon/icon_novinka.svg"></ion-icon>
+    <ion-icon *ngIf="!shop.count" src="assets/icon/icon_tovara_net.svg"></ion-icon>
+  </span>
+
+  <ion-slides style="position: relative;" class="info_image_sliders" pager="false" [options]="slideOpts">
+    <ion-slide>
+      <div class="vinil_slider_image">
+        <img [src]="shop.image_link" onError="this.src='assets/img/broken.png';">
+      </div>
+    </ion-slide>
+  </ion-slides>
+
+  <div class="vinil_block_price" style="margin-top: 15px;">
+    <p>{{shop['price']}} р.</p>
+    <button (click)="toggle(true)">
+      <p (click)="info()">Подробнее</p>
+    </button>
+  </div>
+
+  <div class="vinil_block_description_color">
+    <div class="info" style="margin-top: 10px;">
+      <p *ngIf="shop['description']">{{shop['description']}}</p>
+    </div>
+  </div>
+</div>

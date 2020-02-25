@@ -1,0 +1,9 @@
+<ion-app>
+  <ion-header *ngIf="!isConnected">
+    <ion-toolbar style="--background: #ef473a">
+      <ion-title text-center> Плохое соединение с интернетом
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-router-outlet [swipeGesture]="false"></ion-router-outlet>
+</ion-app>

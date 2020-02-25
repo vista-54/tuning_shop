@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/menu">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title text-center>Тех. поддержка</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="support" (ngSubmit)="supportForm()">
+
+    <input type="text" name="theme" formControlName="theme" placeholder="Тема обращения...">
+    <div class="valid_form_error"
+      *ngIf="support.controls.theme.invalid && (support.controls.theme.dirty || support.controls.theme.touched)">
+      Тема обязательна
+    </div>
+    <textarea appTextareaAutoSize placeholder="Ваш текст..." class="write_message" name="message" id="message" rows="6"
+      formControlName="message"></textarea>
+    <div class="valid_form_error"
+      *ngIf="support.controls.message.invalid && (support.controls.message.dirty || support.controls.message.touched)">
+      Сообщение не может быть пустое
+    </div>
+
+    <button type="submit" [disabled]="!support.valid" (click)="SupportForm()" class="form_button_center">
+      Отправить
+    </button>
+
+  </form>
+
+</ion-content>

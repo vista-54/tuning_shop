@@ -1,0 +1,28 @@
+<ion-item-sliding *ngIf="!loading && chat !== null">
+  <ion-item
+    (click)="openDialog(chat.id, chat.member_1, chat['user_1']['avatar'], chat['user_1']['name'], chat['user_1']['surname'])">
+    <ion-thumbnail slot="start" style="margin-right: 15px;">
+      <img style="border-radius: 50px"
+        [src]="chat?.user_1?.avatar? chat?.user_1?.avatar : 'assets/img/default-avatar.png'"
+        onError="this.src='assets/img/broken.png';">
+    </ion-thumbnail>
+    <ion-label>{{chat.user_1.name}} {{chat.user_1.surname}}</ion-label>
+    <ion-badge style="padding: 4px;" color="danger" unreadMessages [room_id]="chat.id" #unread="unread"
+      [ngStyle]="{display: (unread.unread ? 'block' : 'none')}">
+      {{unread.unread}}
+    </ion-badge>
+  </ion-item>
+
+  <ion-item-options side="end">
+    <ion-item-option color="danger" (click)="delete(chat.id, chat.member_1)">Удалить</ion-item-option>
+  </ion-item-options>
+
+</ion-item-sliding>
+<ion-item-sliding *ngIf="loading">
+  <ion-item>
+    <ion-avatar slot="start" style="margin-right: 15px;">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-avatar>
+    <ion-skeleton-text animated style="width: 60%;"></ion-skeleton-text>
+  </ion-item>
+</ion-item-sliding>

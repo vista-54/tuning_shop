@@ -1,0 +1,52 @@
+@import '../../../../theme/variables';
+
+.uncontent {
+  text-align: center;
+  padding: 20px;
+
+  p {
+    font: {
+      size: 14px;
+      weigth: 600;
+      family: $app-fonts;
+    }
+
+    color: #000;
+  }
+}
+
+ion-header {
+  ion-toolbar {
+    ion-searchbar {
+      --placeholder-color: white;
+      --color: white;
+      --clear-button-color: white;
+      --icon-color: white;
+      --background: rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.07);
+    }
+  }
+
+  ion-item {
+    position: relative;
+
+    ion-badge {
+      position: absolute;
+      right: 15px;
+      top: calc(50% - 11px);
+    }
+  }
+}
+
+ion-content {
+  ion-list {
+    padding: 5px;
+
+    ion-item-sliding {
+      ion-item {
+        ion-thumbnail {
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+}

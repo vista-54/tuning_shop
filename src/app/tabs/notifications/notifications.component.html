@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title text-center>Уведомления</ion-title>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content style="z-index: 0" #content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event);">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card" *ngFor="let notification of list; let in = index;">
+    <app-notification-item [notification]="notification" [index]="in" [loading]="loading"></app-notification-item>
+  </div>
+
+  <div class="uncontent" *ngIf="!list.length">
+    <p *ngIf="!loading">На данный момент уведомлений нет</p>
+    <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
+  </div>
+
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<app-move-top [style.display]="display" (click)="content.scrollToTop()"></app-move-top>

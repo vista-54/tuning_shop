@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/news">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Новость</ion-title>
+
+    <ion-buttons (click)="back()" slot="end">
+      <ion-icon style="font-size: 25px;" (click)="create()" name="save"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <button class="add-photo" (click)="presentActionSheet()">Добавить фото</button>
+
+  <div class="card">
+    <div class="user_info_subject">
+      <div *ngIf="user['avatar']" class="user_info_subject_avatar">
+        <img [src]="user['avatar'] ? user['avatar'] : 'assets/img/default-avatar.png'" alt="">
+      </div>
+      <div class="user_info_subject_name">
+        <p>{{user.name}} {{user.surname}}</p>
+        <p>{{user.role.name}}</p>
+      </div>
+      <p class="timeAgo">{{user.date | amLocale:'ru' | amTimeAgo}}</p>
+    </div>
+    <ion-slides *ngIf="files.length" [pager]="files.length !== 1" [options]="slideOpts">
+      <ion-slide *ngFor="let image of files; let index = index;">
+        <div>
+          <ion-icon (click)="deleteImage(index)" name="close"></ion-icon>
+          <img [src]="image" alt="">
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <div class="user_text">
+      <textarea appTextareaCreateNews placeholder="Ваш текст..." class="write_message_create_news" name="message"
+        id="message" [(ngModel)]="description"></textarea>
+    </div>
+    <div class="user_comments">
+      <p>
+        <ion-icon name="chatbubbles"></ion-icon>
+        Комментарии &nbsp;{{user['comment_count'] ? '(' + user['comment_count'] + ')' : ' '}}
+      </p>
+      <ion-icon *ngIf="user['instagram']" name="logo-instagram"></ion-icon>
+    </div>
+  </div>
+
+</ion-content>

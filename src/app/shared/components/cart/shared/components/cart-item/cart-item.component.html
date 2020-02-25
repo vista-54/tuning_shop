@@ -1,0 +1,20 @@
+<div class="item">
+  <div class="title_image">
+    <img [src]="item.image_link" onError="this.src='assets/img/broken.png';">
+    <div style="font-size: 25px; position: absolute; left: -12px; top: 0px;" class="block-status">
+      <ion-icon *ngIf="item.action" style="margin-right: 7px;" src="assets/icon/icon_akcia.svg"></ion-icon>
+      <ion-icon *ngIf="item.new" src="assets/icon/icon_novinka.svg"></ion-icon>
+    </div>
+  </div>
+  <div class="item-body">
+    <p>{{item.name}}</p>
+    <p>{{item.article}}</p>
+    <p>{{item.price}} р.</p>
+    <div class="change_count">
+      <button [disabled]="!countSelect" (click)="rm()">-</button>
+      <input min="1" #count type="number" (change)="changeCount($event)" [(ngModel)]="countSelect">
+      <button (click)="add()">+</button>
+    </div>
+  </div>
+  <img class="delete" src="assets/img/icons_delete.png" (click)="rm(true)">
+</div>

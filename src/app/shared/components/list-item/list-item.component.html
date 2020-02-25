@@ -1,0 +1,21 @@
+<div *ngIf="!loading && item !== null">
+  <div style="position: relative;" class="security_card_vinil" (click)="itemInfo(item['id'])">
+    <div class="image" [ngStyle]="{'background-image': 'url(' + item.image_link + ')'}">
+      <!-- <img src="{{item.image_link}}" onError="this.src='assets/img/broken.png';"> -->
+    </div>
+    <h3>{{item.name}}</h3>
+    <p>{{item.price}}</p>
+    <span style=" position: absolute;top: 5px;right: auto; font-size: 45px;" class="block-status">
+      <ion-icon *ngIf="item.action" style="margin-right: 7px;" src="assets/icon/icon_akcia.svg"></ion-icon>
+      <ion-icon *ngIf="item.new" src="assets/icon/icon_novinka.svg"></ion-icon>
+      <ion-icon *ngIf="!item.count" src="assets/icon/icon_tovara_net.svg"></ion-icon>
+    </span>
+  </div>
+</div>
+<div *ngIf="loading" class="security_card_vinil" [style.width.px]="getWidth()">
+  <ion-thumbnail [style.height.px]="getHeight()" slot="start" class="image">
+    <ion-skeleton-text animated></ion-skeleton-text>
+  </ion-thumbnail>
+  <ion-skeleton-text animated style="width: 30%; margin: 10px 0;"></ion-skeleton-text>
+  <ion-skeleton-text animated style="width: 50%; margin: 10px 0;"></ion-skeleton-text>
+</div>

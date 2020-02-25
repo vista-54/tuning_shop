@@ -1,0 +1,23 @@
+@import '../../../theme/variables.scss';
+
+.card {
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 7px 0px rgba(167, 168, 169, 0.3);
+  width: 90%;
+  margin: 5%;
+}
+.uncontent {
+  text-align: center;
+  padding: 20px;
+
+  p {
+    font: {
+      size: 16px;
+      weigth: 600;
+      family: $app-fonts;
+    }
+
+    color: #000;
+  }
+}

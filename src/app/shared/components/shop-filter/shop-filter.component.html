@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" (click)="modalController.dismiss()">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Фильтр</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="filter" (ngSubmit)="filteFrom()">
+
+    <ion-list>
+      <ion-item class="trans" lines="none" [ngClass]="{'required_form': !filter.valid, 'success_form': filter.valid}">
+        <ion-label floating style="flex: auto;">Бренд:</ion-label>
+        <ion-select name="sex" (ionChange)="selectProvider($event)" formControlName="provider_id" okText="Принять"
+          cancelText="Отмена">
+          <ion-select-option *ngFor="let provider of providers" [value]="provider.id">{{provider.name}}
+          </ion-select-option>
+          <ion-select-option value="all">Все</ion-select-option>
+        </ion-select>
+        <!-- <div *ngIf="!filter.valid" class="valid_form_error">
+          <p>Обязательный параметр</p>
+        </div> -->
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Акция</ion-label>
+        <ion-checkbox formControlName="action" slot="end" color="primary">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-label>Новинка</ion-label>
+        <ion-checkbox formControlName="new" slot="end" color="primary">
+        </ion-checkbox>
+      </ion-item>
+
+      <ion-radio-group formControlName="sort">
+        <ion-list-header color="light">
+          Рейтинг
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label>От большего к меньшему</ion-label>
+          <ion-radio value="acs"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>От меньшего к большему</ion-label>
+          <ion-radio value="desc"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+    </ion-list>
+
+    <button (click)="clear()" class="form_button_center">Сбросить</button>
+
+    <button [disabled]="!filter.valid" class="form_button_center" type="submit">Найти</button>
+  </form>
+
+</ion-content>

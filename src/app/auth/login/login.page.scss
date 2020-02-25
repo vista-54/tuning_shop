@@ -1,0 +1,100 @@
+@import "../../../theme/variables";
+
+// .button_back{
+//   margin: 5% 0 5% 12%;
+// }
+
+.logo {
+  width: 70%;
+  margin: 17% auto 15%;
+  text-align: center;
+  img {
+    width: 100%;
+  }
+}
+
+.form_button {
+  margin-top: 30px;
+}
+
+// #login {
+//   --ion-background-color: #5b87e5 !important;
+
+//   // h1 {
+//   //   text-align: center;
+//   //   font: {
+//   //     size: 50px;
+//   //     weight: bold;
+//   //     family: $app-fonts;
+//   //   }
+//   //   color: #fff;
+//   //   margin: 30% auto 25%;
+//   // }
+//   .logo {
+//     width: 70%;
+//     margin: 30% auto 15%;
+//     text-align: center;
+//     img {
+//       width: 100%;
+//     }
+//   }
+//   form {
+//     margin: 0 auto;
+//     width: 75%;
+//     ion-item {
+//       font-family: var(--ion-font-family, $app-fonts);
+//       --inner-border-width: 0px 0px 0px 0px;
+//       --color: var(--ion-item-text-color, var(--ion-text-color, #fff));
+//       --background-activated: var(--ion-item-background-color-active, #transparent);
+//       --border-color: transparent;
+//       --highlight-height: 0;
+//       --highlight-color-focused: var(--ion-color-primary, #transparent);
+//       --highlight-color-valid: var(--ion-color-success, #transparent);
+//       --highlight-color-invalid: var(--ion-color-danger, #transparent);
+//       --padding-end: 0px;
+//       --padding-start: 0px;
+//       --inner-padding-end: 0px;
+//       font-size: 17px;
+//       ion-input {
+//         --placeholder-opacity: 1;
+//         border: {
+//           style: solid;
+//           width: 1px;
+//           color: #fff;
+//           radius: 30px;
+//         }
+//         --padding-top: 10px;
+//         --padding-end: 10px;
+//         --padding-bottom: 10px;
+//         --padding-start: 20px;
+//         margin: 15px 0;
+//         //input {
+//         //
+//         //}
+//       }
+//     }
+//     .form_button {
+//       margin-top: 40px;
+//     }
+//     .form_button_center {
+//       height: 45px;
+//       width: 75%;
+//       margin: 0 auto;
+//       display: block;
+//       box-shadow: 0 0 42.48px 16.52px rgba(2, 55, 205, 0.28);
+//       background: {
+//         color: white;
+//       }
+//       border: {
+//         radius: 40px;
+//         style: none;
+//       }
+//       font: {
+//         size: 18px;
+//         family: $app-fonts;
+//       }
+//       color: $background-color;
+//     }
+//   }
+
+// }

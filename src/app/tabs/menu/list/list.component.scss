@@ -1,0 +1,29 @@
+@import './../../../../theme/variables.scss';
+
+.content {
+    display: flex;
+    flex-wrap: wrap;
+
+    .card {
+        display: flex;
+        flex-wrap: wrap;
+        width: 46%;
+        margin: 0 2%;
+        align-items: center;
+    }
+}
+
+.uncontent {
+    text-align: center;
+    padding: 20px;
+
+    p {
+        font: {
+            size: 14px;
+            weigth: 600;
+            family: $app-fonts;
+        }
+
+        color: #000;
+    }
+}

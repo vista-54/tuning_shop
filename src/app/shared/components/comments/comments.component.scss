@@ -1,0 +1,110 @@
+@import "../../../../theme/variables.scss";
+
+ion-content {
+
+    .messages {
+        width: 70%;
+        margin: 15px;
+        padding: 10px 10px 15px 10px;
+        position: relative;
+
+        border: {
+            radius: 5px;
+            style: solid;
+            width: 1px;
+            color: #dedede;
+        }
+
+        p {
+            margin: 0;
+
+            &:first-child {
+                font: {
+                    size: 14px;
+                    weight: 400;
+                    family: $app-fonts;
+                }
+            }
+
+            &:last-child {
+                position: absolute;
+                bottom: 2px;
+                right: 4px;
+
+                font: {
+                    size: 9px;
+                    weight: 400;
+                    family: $app-fonts;
+                }
+            }
+        }
+    }
+
+    .right {
+        margin: 15px 15px 15px auto;
+        background: #6794FF;
+    }
+
+    .uncontent {
+        text-align: center;
+        padding: 20px;
+
+        p {
+            font: {
+                size: 16px;
+                weigth: 600;
+                family: $app-fonts;
+            }
+
+            color: #000;
+        }
+    }
+}
+
+ion-footer {
+
+    //position: absolute;
+    //bottom: 0;
+    ion-toolbar {
+        --background: white;
+        height: auto !important;
+
+        .rating {
+            padding: 5px 0;
+            margin: 0 auto;
+            display: block;
+            width: 153px;
+        }
+
+        .enter_text {
+            display: flex;
+            justify-content: center;
+            align-content: space-between;
+
+            textarea {
+                width: 100%;
+                min-height: 38px;
+                resize: unset;
+                overflow: hidden;
+
+                border: {
+                    radius: 15px;
+                    width: 1px;
+                    color: #dedede;
+                    style: solid;
+                }
+
+                // border-radius: 15px;
+                color: #000;
+
+                &::placeholder {
+                    padding: 5px 0 5px 10px;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+}

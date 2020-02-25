@@ -1,0 +1,88 @@
+@import '../../../../../../../theme/variables.scss';
+
+.comment_user_block {
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px 0;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+
+    border-bottom: {
+        style: solid;
+        width: 1px;
+        color: #6f6f6f;
+    }
+
+    .user_avatar {
+        width: 17%;
+        margin-right: 15px;
+
+        border: {
+            style: none;
+            radius: 50px;
+        }
+
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        img {
+            border-radius: 100px;
+        }
+    }
+
+    .user_info {
+        width: 70%;
+
+        p {
+            &:first-child {
+                margin: 15px 0 0;
+
+                font: {
+                    size: 18px;
+                    weight: 500;
+                    family: $app-fonts;
+                }
+
+                color: #000;
+            }
+
+            &:nth-child(2) {
+                margin: 5px 0;
+                color: #979797;
+
+                font: {
+                    size: 12px;
+                    weight: 400;
+                    family: $app-fonts;
+                }
+            }
+
+            &:last-child {
+                color: #6f6f6f;
+            }
+        }
+    }
+
+    .rating {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+
+        owl-rating {
+            font-size: 10px;
+        }
+    }
+
+    .close {
+        color: #6c6c6c;
+        position: absolute;
+        font-size: 25px;
+        top: 6px;
+        right: 5px;
+    }
+}

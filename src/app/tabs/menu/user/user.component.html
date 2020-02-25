@@ -1,0 +1,106 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" (click)="back()">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Профиль</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="z-index: 0" #content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+  <div class="user_info">
+    <div class="user_info_sub">
+      <div class="user-avatar">
+        <img [src]="alians['avatar'] ? alians['avatar'] : 'assets/img/default-avatar.png'"
+          onError="this.src='assets/img/broken.png';">
+      </div>
+      <div class="info_block">
+        <p style="margin: auto; display: flex;position: static; margin-bottom: 16px;font-size: 16px;">
+          {{alians.name}} <br> {{alians.surname}}
+          <span style="z-index: 9999; left:19px;" class="block-status">
+            <ion-icon *ngIf="alians.certified" style="margin-right: 0px; font-size: 15px;"
+              src="assets/icon/sertificated_person.svg"></ion-icon>
+            <ion-icon *ngIf="alians.verified" style="font-size: 15px;" src="assets/icon/checked_person.svg">
+            </ion-icon>
+          </span>
+        </p>
+        <p style="margin: 8px auto;">
+          <span style="text-decoration: underline; color: blue;" *ngIf="alians.instagram" (click)="openInst()">
+            <ion-icon name="logo-instagram"></ion-icon>
+            {{alians.instagram ? 'profile_inst / ' : ' '}}
+          </span>
+        </p>
+        <p style="margin: 0;">
+          <span style="text-decoration: underline; color: blue;" *ngIf="alians.vk" (click)="openVK(alians.vk)">
+            <ion-icon name="logo-vk"></ion-icon>
+            {{alians.vk ? 'profile_vk / ' : ' '}}
+          </span>
+          <span> {{alians.role.name}}</span>
+        </p>
+      </div>
+      <div *ngIf="+alians.rating" class="rating">
+        <owl-rating [(ngModel)]="+alians.rating" [readonly]="true">
+          <owl-rating-button style="color: yellow;" value="1">
+            1 Star
+          </owl-rating-button>
+          <owl-rating-button style="color: yellow;" value="2">
+            2 Stars
+          </owl-rating-button>
+          <owl-rating-button style="color: yellow;" value="3">
+            3 Stars
+          </owl-rating-button>
+          <owl-rating-button style="color: yellow;" value="4">
+            4 Stars
+          </owl-rating-button>
+          <owl-rating-button style="color: yellow;" value="5">
+            5 Stars
+          </owl-rating-button>
+        </owl-rating>
+      </div>
+      <p>
+    </div>
+  </div>
+  <div class="about">
+    <p *ngIf="alians.city">Город: {{alians.city}}</p>
+    <div *ngIf="alians.specializations && alians.specializations.length > 0">Специализации: <span
+        *ngFor="let spec of alians.specializations">&nbsp;{{spec.name}}</span>
+    </div>
+  </div>
+  <div class="user_block_button">
+    <button *ngIf="alians['id'] != user['id']"
+      (click)="openDialog(alians.id, alians.avatar, alians.name, alians.surname)">Написать сообщение</button>
+    <button [ngStyle]="{'width': alians['id'] != user['id'] ? '45%' : '95%'}" style="position: relative;"
+      (click)="openComments(alians.id)">Оставить отзыв
+      &nbsp;{{alians['comment_count'] ? '(' + alians['comment_count'] + ')' : ' '}}
+    </button>
+  </div>
+  <div *ngIf="alians.id != user.id" class="subscription">
+    <button (click)="subs(alians.id)">{{alians['subscribe'] ? 'Отписаться': 'Подписаться'}}</button>
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card" *ngFor="let news of list;">
+    <app-news-item [new]="news" [loading]="loading"></app-news-item>
+  </div>
+
+  <div class="uncontent" *ngIf="!list.length">
+    <p *ngIf="!loading">На данный момент новостей нет</p>
+    <ion-spinner *ngIf="!loading && list.length" name="lines"></ion-spinner>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+
+<app-move-top [style.display]="display" (click)="content.scrollToTop()"></app-move-top>

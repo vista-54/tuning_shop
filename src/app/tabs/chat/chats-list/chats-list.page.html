@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-title text-center>Диалоги</ion-title>
+
+    </ion-toolbar>
+
+    <ion-toolbar>
+        <ion-searchbar animated [(ngModel)]="name" placeholder="Поиск" debounce="1000"
+            (ionInput)="changeSearch($event)">
+        </ion-searchbar>
+
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content #content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+
+    <ion-list>
+        <app-chat-list-item *ngFor="let chat of list" [chat]="chat" [loading]="loading"></app-chat-list-item>
+    </ion-list>
+
+    <div class="uncontent" *ngIf="!list.length">
+        <p *ngIf="!loading">а данный момент у вас нет диалогов</p>
+        <ion-spinner *ngIf="loading" name="lines"></ion-spinner>
+
+    </div>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+
+<app-move-top [style.display]="display" (click)="content.scrollToTop()"></app-move-top>

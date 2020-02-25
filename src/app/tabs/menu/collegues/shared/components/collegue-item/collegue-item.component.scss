@@ -1,0 +1,21 @@
+ion-item-sliding {
+    ion-item {
+        ion-thumbnail {
+            position: relative;
+
+            .rating {
+                position: absolute;
+                top: 45px;
+                font-size: 7px;
+                left: -6px;
+            }
+        }
+
+        ion-label {
+            p {
+                width: fit-content;
+                overflow: initial;
+            }
+        }
+    }
+}

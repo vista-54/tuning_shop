@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title text-center>Новости</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-icon style="font-size: 25px;" name="add-circle-outline" (click)="createNews()"></ion-icon>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+
+</ion-header>
+
+<ion-content style="z-index: 0" #content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="card" *ngFor="let news of list;">
+    <app-news-item [new]="news" [loading]="loading"></app-news-item>
+  </div>
+
+  <div class="uncontent" *ngIf="!list.length">
+    <p *ngIf="!loading">На данный момент новостей нет</p>
+    <ion-spinner *ngIf="!loading && list.length" name="lines"></ion-spinner>
+  </div>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Загрузка">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+
+<app-move-top [style.display]="display" (click)="content.scrollToTop()"></app-move-top>

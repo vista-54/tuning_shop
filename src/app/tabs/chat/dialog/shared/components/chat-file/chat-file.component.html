@@ -1,0 +1,30 @@
+<div class="messages" [ngClass]="{right: message.message_creator_id == user.id}">
+  <!-- *ngIf="file?.type === 'jpg' || file?.type === 'png'" -->
+  <p style="margin-bottom: 10px;">{{message.message}}</p>
+  <div class="message_fils" *ngFor="let file of message?.fils">
+    <div style="margin-bottom: 10px;" *ngIf="getImage(file?.fileType)" (click)="openImg(file)"
+      class="message-iamge-prev">
+      <div [style.backgroundImage]="'url('+ file.fileUrl +')'" class="message-image"></div>
+      <a style="width: 75%; color: #000">
+        {{file['fileName']}}
+      </a>
+    </div>
+    <div style="margin-bottom: 10px;" *ngIf="getApplication(file?.fileType)" (click)="download(file)"
+      class="message_fils_file">
+      <ion-icon class="icon-doc" name="document"></ion-icon>
+      <a style="width: 75%; color: #000">
+        {{file?.fileName}}
+      </a>
+      <ion-spinner *ngIf="file['loading'] && !file['done']" style="margin-left: 10px;" name="crescent"></ion-spinner>
+      <ion-icon class="icon-checkmarck" *ngIf="file['done']" name="checkmark"></ion-icon>
+    </div>
+    <div class="message_fils_file" *ngIf="getVideo(file?.fileType)"
+      (click)="openVideo(file?.fileName, file?.fileUrl, file?.fileType)">
+      <ion-icon class="icon-doc" name="play-circle"></ion-icon>
+      <a style="width: 75%; color: #000">
+        {{file?.fileName}}
+      </a>
+    </div>
+  </div>
+  <p>{{message.date | amLocale:'ru' | amTimeAgo}}</p>
+</div>

@@ -1,0 +1,61 @@
+<!-- <div class="auth">
+    <div class="auth_block_card">
+        <div class="logo">
+            <img src="assets/img/login_logo.png" alt="">
+        </div>
+        <div class="content">
+            <p>Введите код подтверждения</p>
+            <form (ngSubmit)="confirm()" #ConfirmForm="ngForm">
+
+                <div class="form-group">
+                    <input type="text" name="code" id="code" placeholder="Ваш код подтверждения" [(ngModel)]="userData.code" class="form-control" #code="ngModel"
+                           required>
+                    <div [hidden]="code.valid || code.pristine" class="valid_form_error">
+                        Код обязателен
+                    </div>
+                </div>
+
+                <button type="submit" [disabled]="ConfirmForm.form.invalid" id="auth" class="btn auth_block_button">
+                    Далее &rarr;
+                </button>
+            </form>
+            <div class="form_footer">
+                <p>Есть аккаунт?
+                    <span [routerLink]="['../sign-up']">Регистрация</span>
+                </p>
+                <p>Вспомнили пароль?
+                    <span [routerLink]="['../sign-in']">Войти</span>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div> -->
+
+<ion-content id="confirm-code">
+    <!-- <h1>logo</h1> -->
+    <button class="button_back" (click)="back()">
+        <ion-icon name="md-arrow-back"></ion-icon>
+      Назад
+    </button>
+    <div class="logo">
+        <img src="assets/img/logo_reg.png" alt="">
+    </div>
+    <form [formGroup]="confirm" (ngSubmit)="confirmCodeForm()">
+        <ion-item>
+            <ion-input type="text" formControlName="code" placeholder="Код"></ion-input>
+        </ion-item>
+        <div class="form_button">
+            <button [disabled]="!confirm.valid" class="form_button_center" type="submit">Далее</button>
+            <!-- <button class="form_button_line" type="button" (click)="openRegister()">Регистрация</button> -->
+        </div>
+        <div class="form_footer">
+            <p>Есть аккаунт?
+                <span (click)="openRegister()">Регистрация</span>
+            </p>
+            <p>Вспомнили пароль?
+                <span (click)="openLogin()">Войти</span>
+            </p>
+        </div>
+    </form>
+</ion-content>

@@ -1,0 +1,90 @@
+@import '../../../../theme/variables.scss';
+//
+//ion-header {
+//  ion-toolbar {
+//    ion-buttons {
+//      height: 25px;
+//      img {
+//        height: 25px;
+//      }
+//    }
+//  }
+//}
+
+.user_block_header {
+    text-align: center;
+    position: relative;
+
+    .user_avatar {
+        border: {
+            width: 1px;
+            style: solid;
+            color: #82d167;
+        }
+
+        margin: 15px auto;
+        width: 120px;
+        text-align: center;
+        height: 120px;
+        overflow: hidden;
+        border-radius: 100px;
+    }
+
+    h2 {
+        
+        font-size: 3.4rem;
+        color: #303030;
+    }
+
+    .user_image_edit {
+        width: 60px;
+        position: absolute;
+        right: 30px;
+        top: calc(50% - 55px);
+    }
+}
+
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+    border-bottom: 1px solid #dedede;
+    box-shadow: none !important;
+}
+
+form {
+    width: 95%;
+    margin: 0 auto;
+
+    ion-item {
+        --padding-left: 0 !important;
+        --padding-start: 0 !important;
+
+        .item-native {}
+    }
+
+    .input-wrapper {
+        height: 52px;
+
+        ion-select,
+        ion-datetime {
+            padding: 0 4px 3px 20px;
+        }
+
+        ion-select {
+            width: 85%;
+            max-width: 100%;
+        }
+
+        ion-input {
+            height: 30px;
+
+            input {
+                margin: 0 0 3px 20px;
+            }
+        }
+    }
+}
+
+.select-icon {
+    width: 18px;
+    height: 18px;
+}

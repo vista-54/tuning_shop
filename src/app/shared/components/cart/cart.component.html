@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" (click)="back()">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Моя корзина</ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="content" *ngIf="cart.length">
+    <div class="custom_sub_header">
+      <p>ТОВАРОВ</p>
+      <p>{{sumSelectCount}} ЕДИНИЦЫ</p>
+    </div>
+
+    <div class="list-items">
+      <app-cart-item *ngFor="let item of cart" [item]="item"></app-cart-item>
+    </div>
+
+    <div class="buy_cart">
+      <p>Всего к оплате</p>
+      <p>{{sum}} р.</p>
+    </div>
+
+    <textarea placeholder="Ваш комментарий..." class="write_message" name="message" id="message" rows="6"
+      [(ngModel)]="comment"></textarea>
+
+    <div class="buy_button">
+      <button (click)="buy()">Оформить заказ</button>
+    </div>
+  </div>
+
+  <div class="uncontent" *ngIf="!cart.length">
+    <p>На данный момент корзина пустая</p>
+  </div>
+
+  <div class="buy_button" *ngIf="cont">
+    <button (click)="continue()">Продолжить покупки</button>
+  </div>
+
+</ion-content>

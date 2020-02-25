@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+
+        <ion-buttons slot="start">
+            <ion-back-button text="" defaultHref="app/tabs/menu">
+            </ion-back-button>
+        </ion-buttons>
+
+        <ion-title text-center>Пожаловаться</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <textarea reiszeTextarea placeholder="Ваш текст..." class="texarea" name="message" id="message" rows="6"
+        [(ngModel)]="message"></textarea>
+
+    <button class="form_button_center" (click)="send()">
+        Отправить
+    </button>
+
+</ion-content>

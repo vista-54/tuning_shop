@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="app/tabs/menu">
+      </ion-back-button>
+    </ion-buttons>
+
+    <ion-title text-center>Выберите категорию</ion-title>
+
+    <ion-buttons style="position: relative;" slot="end" (click)="openCart()">
+      <ion-icon name="cart"></ion-icon>
+      <!-- <img src="assets/img/icons8_Shopping_Bag_100px.png" alt=""> -->
+      <ion-badge style="padding: 4px;" color="danger" appCartCount #sumSelectCount="sumSelectCount"
+        [ngStyle]="{'display': sumSelectCount.sumSelectCount ? 'block' : 'none'}">
+        {{sumSelectCount.sumSelectCount ? sumSelectCount.sumSelectCount: ''}}</ion-badge>
+    </ion-buttons>
+
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content>
+
+  <div class="card" *ngFor="let category of categories" [ngStyle]="{'background-image': 'url('+ category['image'] +')'}"
+    (click)="open(category['id'])">
+    <p>{{category['title']}}</p>
+  </div>
+
+</ion-content>

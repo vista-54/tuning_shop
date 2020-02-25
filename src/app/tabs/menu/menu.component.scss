@@ -1,0 +1,67 @@
+@import '../../../theme/variables.scss';
+
+ion-content {
+    .user-modal {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 10px;
+
+        &-avatar {
+            width: 25%;
+
+            img {
+                width: 100%;
+
+                border: {
+                    radius: 100px;
+                    style: none;
+                }
+            }
+        }
+
+        &-info {
+            width: 75%;
+            padding: 0 0 0 20px;
+
+            p {
+                &:first-child {
+
+                    font: {
+                        size: 20px;
+                        weigth: 400;
+                        family: $app-fonts;
+                    }
+
+                    color: #1934a1;
+
+                }
+
+                &:last-child {
+                    font: {
+                        size: px;
+                        weigth: 400;
+                        family: $app-fonts;
+                    }
+
+                    color: #a3aed9;
+                }
+            }
+
+        }
+    }
+
+    ion-list {
+        ion-item-divider {
+            padding-left: 10px;
+        }
+
+        ion-item {
+            img {
+                width: 25px;
+                margin-right: 10px;
+            }
+        }
+    }
+}
